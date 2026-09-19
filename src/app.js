@@ -1,115 +1,93 @@
-import http from "http";
-import dotenv from "dotenv";
+import express from "express";
+import ServiceManager from "./managers/ServiceManager.js";
 
-dotenv.config();
+const app = express();
 
-const PORT = process.env.PORT || 3000;
+// GET, POST, PUT, DELETE
+const serviceManager = new ServiceManager();
 
+app.use(express.json());
 
-// ============================================================
-// CREACIÓN DEL SERVIDOR
-// ============================================================
-
-// Creamos el servidor HTTP.
-// Node.js nos proporciona los objetos req y res:
-// - req → contiene información sobre la petición recibida
-// - res → nos permite construir y enviar la respuesta
-const server = http.createServer((req, res) => {
-
-
-    console.log(`Petición recibida: ${req.method} de la ruta ${req.url}`);
-
-
-    // ========================================================
-    // RUTA /
-    // ========================================================
-
-    // Si desde el frontend nos llega una petición GET a la ruta /
-    // se ejecuta este bloque porque coinciden el método y la ruta.
-    //
-    // En este caso respondemos:
-    // - Status Code: 200
-    // - Content-Type: text/plain
-    // - Body: "Hola Mundo"
-
-    if (req.url === "/" && req.method === "GET") {
-
-        res.writeHead(200, {
-            "Content-Type": "text/plain; charset=utf-8"
-        });
-
-        res.end("Hola Mundo");
-
-        return;
-    }
-
-
-    // ========================================================
-    // RUTA /usuarios
-    // ========================================================
-
-    // Si llega una petición GET a la ruta /usuarios,
-    // se ejecuta este bloque porque coinciden el método y la ruta.
-    //
-    // En este caso respondemos:
-    // - Status Code: 200
-    // - Content-Type: application/json
-    // - Body: un array de usuarios en formato JSON
-
-    if (req.url === "/usuarios" && req.method === "GET") {
-
-
-        // Array con datos de usuarios que simula una base de datos.
-        //
-        // En próximas clases podemos almacenar estos datos
-        // en archivos y posteriormente utilizar una base de datos.
-
-        const usuarios = [
-            { id: 1, nombre: "Juan" },
-            { id: 2, nombre: "Ana" },
-            { id: 3, nombre: "Ariel" }
-        ];
-
-
-        res.writeHead(200, {
-            "Content-Type": "application/json"
-        });
-
-
-        // JSON.stringify() convierte el array de JavaScript
-        // en un string con formato JSON.
-        //
-        // Esto nos permite enviar los datos como contenido
-        // de una respuesta HTTP.
-
-        res.end(JSON.stringify(usuarios));
-
-
-        return;
-    }
-
-
-    // ========================================================
-    // RUTA NO ENCONTRADA
-    // ========================================================
-
-    // Si la petición no coincidió con ninguna de las rutas
-    // anteriores, respondemos con un error 404.
-
-    res.writeHead(404, {
-        "Content-Type": "text/plain; charset=utf-8"
+app.get("/",
+    async (req, res, next) => {
+        req.numero = 0;
+        next();
+    },
+    async (req, res, next) => {
+        req.numero += 1;
+        next()
+    },
+    async (req, res, next) => {
+        req.numero += 1;
+        next()
+    },
+    async (req, res, next) => {
+        try {
+            const error = new Error("este error se va al ultimo middleware")
+            throw error;
+        } catch (error) {
+            next(error);
+        }
+    },
+    async (req, res, next) => {
+        try {
+            // res.json({ nombre: "Maxi", rol: "profesor" });
+            // res.download("C:/Users/Noxie-PC/OneDrive/Escritorio/CoderHouse/back 1/94910/src/app.js");
+            res.status(200).send(req.numero);
+        } catch (error) {
+            next(error);
+        }
     });
 
-    res.end("Ruta no encontrada");
-
+app.get("/api/services", async (req, res) => {
+    try {
+        res.status(200).json(serviceManager.getServices());
+    } catch (error) {
+        next(error);
+    }
 });
 
+app.get("/api/services/:id", async (req, res) => {
+    try {
+        const service = serviceManager.getServicesById(req.params.id)
+        res.status(200).json(service);
+    } catch (error) {
+        next(error);
+    }
+});
 
-// ============================================================
-// INICIAMOS EL SERVIDOR
-// ============================================================
-server.listen(PORT, () => {
+app.post("/api/services", async (req, res) => {
+    try {
+        const { name, description, price, available } = req.body;
+        const newService = serviceManager.createService(name, description, price, available);
+        res.status(201).json({ message: "nuevo turno generado", newService });
+    } catch (error) {
+        next(error);
+    }
+});
 
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+app.put("/api/services/:id", async (req, res) => {
+    try {
+        const updatedService = serviceManager.updateService(req.params.id, req.body);
+        res.status(201).json({ message: "turno actualizado", updatedService });
+    } catch (error) {
+        next(error);
+    }
+});
 
+app.delete("/api/services/:id", async (req, res) => {
+    try {
+        const deletedService = serviceManager.deleteService(req.params.id);
+        res.status(201).json({ message: "turno eliminado", deletedService })
+    } catch (error) {
+        next(error);
+    }
+});
+
+app.use(async (err, req, res, next) => {
+    res.json(err.message)
+});
+
+app.listen(3000, () => {
+    console.log("server andando en puerto 3000");
 });
