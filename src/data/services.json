@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Clases de Programación",
+    "duration": 120,
+    "price": 12345,
+    "category": "IT",
+    "available": true
+  }
+]
