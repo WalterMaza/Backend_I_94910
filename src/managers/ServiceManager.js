@@ -1,42 +1,63 @@
 import crypto from "crypto";
+import fs from "fs/promises";
 
 class ServiceManager {
-
-    services = []
-    constructor() {
-        this.services = [];
+    constructor(path) {
+        this.path = path;
     }
 
-    getServices() {
-        return this.services;
+    async #readServices() {
+        const data = await fs.readFile(this.path, "utf-8");
+        return JSON.parse(data); //transformamos de json a obj
     }
 
-    getServicesById(id) {
-        return this.services.find(service => service.id === id);
+    async #writeServices(services) {
+        fs.writeFile(this.path, JSON.stringify(services, null, 2));
     }
 
-    createService(name, description, price, available) {
+    async getServices() {
+        return await this.#readServices();
+    }
+
+    async getServicesById(id) {
+        const services = await this.#readServices();
+        return services.find(service => service.id === id);
+    }
+
+    async createService(name, duration, price, category, available) {
+        const services = await this.#readServices();
         const newService = {
-            id: crypto.randomUUID(), name, description, price, available
+            id: crypto.randomUUID(),
+            name,
+            duration,
+            price,
+            category,
+            available
         };
-        this.services.push(newService);
+        services.push(newService);
+        await this.#writeServices(services);
         return newService;
     }
 
-    updateService(id, data) {
-        const service = this.getServicesById(id);
-        if (!service) { return null; }
-        service.name = data.name ?? service.name;
-        service.description = data.description ?? service.description;
-        service.price = data.price ?? service.price;
-        service.avaitable = data.avaitable ?? service.avaitable;
-        return service;
+    async updateService(id, data) {
+        const services = await this.#readServices();
+        const index = services.findIndex(service => service.id === id);
+        if (index === -1) { return null };
+        services[index] = {
+            ...services[index],
+            ...data
+        };
+        await this.#writeServices(services);
+        return services[index];
     }
 
-    deleteService(id) {
-        const index = this.services.findIndex(service => service.id === id);
-        if (index === -1) { return null; }
-        return this.services.splice(index, 1)[0];
+    async deleteService(id) {
+        const services = await this.#readServices();
+        const index = services.findIndex(service => service.id === id);
+        if (index === -1) { return null };
+        const deletedService = services.splice(index, 1)[0];
+        await this.#writeServices(services);
+        return deletedService;
     }
 }
 

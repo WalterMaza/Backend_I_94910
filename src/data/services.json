@@ -1,0 +1,26 @@
+[
+  {
+    "id": "f1f94249-6e28-420f-958f-9f3de6a20dad",
+    "name": "Clases de Programación",
+    "duration": 120,
+    "price": 12345,
+    "category": "IT",
+    "available": true
+  },
+  {
+    "id": "4f4bb12b-09a5-45dc-b244-260dfcde9ed2",
+    "name": "masterclass bajo electrico",
+    "duration": 150,
+    "price": 500,
+    "category": "musica",
+    "available": true
+  },
+  {
+    "id": "721be803-d548-406e-aa34-d28d4c2ad59c",
+    "name": "pasteleria basica",
+    "duration": 150,
+    "price": 500,
+    "category": "cocina",
+    "available": true
+  }
+]

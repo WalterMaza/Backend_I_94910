@@ -1,127 +1,216 @@
-# Backend Turnos y Reservas
+# Clase 3: Persistencia con Archivos JSON
 
-Proyecto de backend desarrollado en la Clase 1 del curso de Programación Backend. Este proyecto implementa un servidor HTTP básico utilizando el módulo nativo `http` de Node.js, con el objetivo de aprender los fundamentos de la creación de APIs REST.
+API de Sistema de Turnos y Reservas que implementa persistencia de datos utilizando el módulo nativo `fs` de Node.js para trabajar con archivos JSON.
 
-## Características
+## Tecnologías
 
-- **Módulo nativo HTTP**: Utiliza el módulo `http` de Node.js para crear el servidor sin frameworks externos
-- **Variables de entorno**: Implementa configuración mediante variables de entorno usando `dotenv`
-- **Sistema de rutas**: Implementa rutas básicas para responder a diferentes endpoints
-- **Respuestas JSON**: Capacidad de responder datos en formato JSON
-- **Manejo de errores**: Respuesta 404 para rutas no encontradas
-
-## Tecnologías Utilizadas
-
-- **Node.js**: Entorno de ejecución JavaScript
-- **Módulo nativo `http`**: Para la creación del servidor HTTP
-- **dotenv**: Para la gestión de variables de entorno (v17.4.2)
-- **ES Modules**: Sistema de módulos de JavaScript (`type: "module"`)
-
-## Instalación
-
-1. Clonar el repositorio
-2. Navegar al directorio del proyecto
-3. Instalar las dependencias:
-
-```bash
-npm install
-```
-
-Por el momento esto instalará la librería `dotenv` necesaria para la gestión de variables de entorno.
-
-## Configuración de Variables de Entorno
-
-El proyecto utiliza variables de entorno para configurar el puerto del servidor. Sigue estos pasos:
-
-1. Copiar el archivo de ejemplo:
-```bash
-cp .env.example .env
-```
-
-2. Editar el archivo `.env` y configurar las variables:
-
-```env
-PORT=3000
-```
-
-- **PORT**: Puerto en el que el servidor escuchará las peticiones (por defecto: 3000)
-
-**Nota**: El archivo `.env` está incluido en `.gitignore` por seguridad, por lo que no se sube al repositorio.
+- Node.js
+- Express
+- Módulo nativo `fs` (File System)
 
 ## Estructura del Proyecto
 
 ```
 backend-turnos-reservas/
 ├── src/
-│   └── app.js          # Archivo principal del servidor
-├── .env                # Variables de entorno (no versionado)
-├── .env.example        # Plantilla de variables de entorno
-├── .gitignore          # Archivos ignorados por Git
-├── package.json        # Configuración del proyecto y dependencias
-└── README.md           # Documentación del proyecto
+│   ├── app.js              # Configuración de rutas y Express
+│   ├── server.js           # Punto de entrada del servidor
+│   ├── data/
+│   │   └── services.json   # Archivo de persistencia de datos
+│   └── managers/
+│       └── ServiceManager.js # Clase para manejo de archivos JSON
+├── package.json
+└── .env
 ```
 
-## Uso del Módulo Nativo HTTP
+## Persistencia con fs
 
-El proyecto utiliza el módulo nativo `http` de Node.js para crear el servidor. Este módulo proporciona:
+El proyecto utiliza el módulo `fs` con promesas para leer y escribir archivos JSON:
 
-- **http.createServer()**: Crea una instancia del servidor HTTP
-- **req (request)**: Objeto que contiene información sobre la petición recibida (método, URL, headers, etc.)
-- **res (response)**: Objeto que permite construir y enviar la respuesta al cliente
-- **res.writeHead()**: Establece el código de estado y headers de la respuesta
-- **res.end()**: Envía el cuerpo de la respuesta y finaliza la petición
+```javascript
+import { promises as fs } from "fs"
 
-## Ejecución
+// Leer archivo JSON
+const data = await fs.readFile(this.path, "utf-8")
+const services = JSON.parse(data)
 
-Para iniciar el servidor en modo desarrollo:
+// Escribir archivo JSON
+const json = JSON.stringify(services, null, 2)
+await fs.writeFile(this.path, json)
+```
+
+## Instalación y Ejecución (de las dependencias y del servidor)
 
 ```bash
+npm install
 npm run dev
 ```
 
-El servidor se iniciará en `http://localhost:3000` (o el puerto configurado en `.env`).
+El servidor inicia en `http://localhost:8080`
 
-## Rutas Disponibles
+## Endpoints API
 
-### GET `/`
-Ruta principal que responde con un mensaje de bienvenida.
+### 1. GET /
+**Descripción:** Ruta principal de la API
 
-**Respuesta:**
-- Status Code: 200
-- Content-Type: text/plain; charset=utf-8
-- Body: "Hola Mundo"
-
-### GET `/usuarios`
-Ruta que devuelve una lista de usuarios en formato JSON.
-
-**Respuesta:**
-- Status Code: 200
-- Content-Type: application/json
-- Body:
+**Respuesta esperada:**
 ```json
-[
-  { "id": 1, "nombre": "Juan" },
-  { "id": 2, "nombre": "Ana" },
-  { "id": 3, "nombre": "Ariel" }
-]
+{
+  "status": "success",
+  "message": "API del Sistema de Turnos y Reservas"
+}
 ```
 
-### Rutas No Encontradas
-Cualquier ruta que no coincida con las anteriores devuelve un error 404.
+---
 
-**Respuesta:**
-- Status Code: 404
-- Content-Type: text/plain; charset=utf-8
-- Body: "Ruta no encontrada"
+### 2. GET /api/services
+**Descripción:** Obtener todos los servicios (opcionalmente filtrar por categoría)
 
-## Conceptos Aprendidos
+**Query params (opcional):**
+- `category`: Filtrar por categoría (ej: `?category=IT`)
 
-- **Creación de servidores HTTP** con el módulo nativo de Node.js
-- **Manejo de peticiones y respuestas** HTTP (req, res)
-- **Configuración de variables de entorno** con dotenv
-- **Sistema de rutas** básico
-- **Diferentes tipos de contenido** (text/plain, application/json)
-- **Códigos de estado HTTP** (200, 404)
-- **Serialización de datos** con JSON.stringify()
-- **ES Modules** para importación/exportación de módulos
+**Respuesta esperada:**
+```json
+{
+  "status": "success",
+  "payload": [
+    {
+      "id": 1,
+      "name": "Clases de Programación",
+      "duration": 120,
+      "price": 12345,
+      "category": "IT",
+      "available": true
+    }
+  ]
+}
+```
 
+**Ejemplo Postman:**
+- Método: GET
+- URL: `http://localhost:8080/api/services`
+- URL con filtro: `http://localhost:8080/api/services?category=IT`
+
+---
+
+### 3. GET /api/services/:sid
+**Descripción:** Obtener un servicio por su ID
+
+**Respuesta esperada (éxito):**
+```json
+{
+  "status": "success",
+  "payload": {
+    "id": 1,
+    "name": "Clases de Programación",
+    "duration": 120,
+    "price": 12345,
+    "category": "IT",
+    "available": true
+  }
+}
+```
+
+**Respuesta esperada (no encontrado):**
+```json
+{
+  "status": "error",
+  "message": "Servicio no encontrado"
+}
+```
+
+**Ejemplo Postman:**
+- Método: GET
+- URL: `http://localhost:8080/api/services/1`
+
+---
+
+### 4. POST /api/services
+**Descripción:** Crear un nuevo servicio (persiste en `services.json`)
+
+**Body (JSON):**
+```json
+{
+  "name": "Consulta médica",
+  "duration": 30,
+  "price": 12000,
+  "category": "salud",
+  "available": true
+}
+```
+
+**Respuesta esperada:**
+```json
+{
+  "status": "success",
+  "payload": {
+    "id": 2,
+    "name": "Consulta médica",
+    "duration": 30,
+    "price": 12000,
+    "category": "salud",
+    "available": true
+  }
+}
+```
+
+**Ejemplo Postman:**
+- Método: POST
+- URL: `http://localhost:8080/api/services`
+- Body → raw → JSON: `{ "name": "Consulta médica", "duration": 30, "price": 12000, "category": "salud", "available": true }`
+
+---
+
+### 5. PUT /api/services/:sid
+**Descripción:** Actualizar un servicio existente (persiste en `services.json`)
+
+**Body (JSON):**
+```json
+{
+  "name": "Consulta médica actualizada",
+  "price": 15000
+}
+```
+
+**Respuesta esperada:**
+```json
+{
+  "status": "success",
+  "payload": {
+    "id": 2,
+    "name": "Consulta médica actualizada",
+    "duration": 30,
+    "price": 15000,
+    "category": "salud",
+    "available": true
+  }
+}
+```
+
+**Ejemplo Postman:**
+- Método: PUT
+- URL: `http://localhost:8080/api/services/2`
+- Body → raw → JSON: `{ "name": "Consulta médica actualizada", "price": 15000 }`
+
+---
+
+### 6. DELETE /api/services/:sid
+**Descripción:** Eliminar un servicio (persiste en `services.json`)
+
+**Respuesta esperada:**
+```json
+{
+  "status": "success",
+  "message": "Servicio eliminado"
+}
+```
+
+**Ejemplo Postman:**
+- Método: DELETE
+- URL: `http://localhost:8080/api/services/2`
+
+---
+
+## Comprobando la Persistencia
+
+Después de realizar operaciones POST, PUT o DELETE, verifica el archivo `src/data/services.json` para confirmar que los cambios se han persistido correctamente. Los datos se mantienen aunque se reinicie el servidor.
