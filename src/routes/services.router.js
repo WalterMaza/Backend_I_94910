@@ -1,27 +1,28 @@
-import { Router } from "express";
-import ServiceController from "../controllers/services.controller.js";
-import { errorHandler } from "../middlewares/errorHandler.js";
-import { validateUUID } from "../middlewares/services.middlewares.js";
+import { Router } from "express"
 
-const router = Router();
+import {
+    getServices,
+    getServiceById,
+    createService,
+    updateService,
+    deleteService
+} from "../controllers/services.controller.js"
 
-// cambiar luego a validacion de ObjectID cuando veamos MongoDB
-router.param("sid", validateUUID);
 
-// router.route("/")
-//     .get(ServiceController.getAllServices)
-//     .post(ServiceController.createService)
+const router = Router()
 
-// router.route("/:sid")
-//     .get(ServiceController.getServiceById)
-//     .put(ServiceController.updateServiceById)
-//     .delete(ServiceController.deleteServiceById)
 
-router.get("/", ServiceController.getAllServices);
-router.get("/:sid", ServiceController.getServiceById);
-router.post("/", ServiceController.createService);
-router.put("/:sid", ServiceController.updateServiceById);
-router.delete("/:sid", ServiceController.deleteServiceById);
+// Router solamente relaciona método + URL con Controller.
+// No contiene reglas del negocio ni acceso a archivos.
+router.get("/", getServices)
 
-router.use(errorHandler);
-export default router;
+router.get("/:sid", getServiceById)
+
+router.post("/", createService)
+
+router.put("/:sid", updateService)
+
+router.delete("/:sid", deleteService)
+
+
+export default router

@@ -1,134 +1,136 @@
-import ServiceManager from "../managers/ServiceManager.js"
+// A partir de este refactor el Controller ya no llama directamente
+// al Manager ni conoce FileSystem.
+//
+// Su única dependencia para ejecutar los casos de uso será el Service.
+import { ServicesService } from "../services/services.service.js"
 
-const serviceManager = new ServiceManager("./src/data/services.json")
 
-class ServiceController {
-    static async getAllServices(req, res, next) {
-        try {
-            const { category } = req.query
+const servicesService = new ServicesService()
 
-            const services = await serviceManager.getServices()
+export const getServices = async (req, res) => {
 
-            let filteredServices = services
+    try {
 
-            if (category) {
-                filteredServices = services.filter(service => service.category === category)
-            }
+        // El Controller pide el caso de uso al Service.
+        // No necesita saber de dónde salen los datos.
+        const services = await servicesService.getServices()
 
-            res.status(200).json({
-                status: "success",
-                payload: filteredServices
-            });
-        } catch (error) {
-            next(error);
-        }
-    }
 
-    static async getServiceById(req, res, next) {
+        return res.status(200).json({
+            status: "success",
+            payload: services
+        })
 
-        try {
-            const { sid } = req.params;
+    } catch (error) {
 
-            const service = await serviceManager.getServicesById(sid);
-
-            if (!service) {
-                return res.status(404).json({
-                    status: "error",
-                    message: "Servicio no encontrado"
-                });
-            }
-            res.status(200).json({
-                status: "success",
-                payload: service
-            });
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    static async createService(req, res, next) {
-        try {
-            const { name, duration, price, category, available } = req.body
-
-            if (!name || !duration || !price || !category || available === undefined) {
-                throw new Error("Faltan campos obligatorios")
-            }
-
-            const newService = await serviceManager.createService(name, duration, price, category, available)
-
-            res.status(201).json({
-                status: "success",
-                payload: newService
-            });
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    static async updateServiceById(req, res, next) {
-        try {
-            const { sid } = req.params;
-
-            const services = await serviceManager.readServices()
-
-            const serviceIndex = services.findIndex(service => service.id === parseInt(sid));
-
-            if (serviceIndex === -1) {
-                return res.status(404).json({
-                    status: "error",
-                    message: "Servicio no encontrado"
-                });
-            }
-
-            const updateService = {
-                ...services[serviceIndex],
-                ...req.body,
-                id: parseInt(sid)
-            }
-
-            services[serviceIndex] = updateService
-
-            await serviceManager.writeServices(services)
-
-            res.status(200).json({
-                status: "success",
-                payload: updateService
-            });
-        } catch (error) {
-            next(error);
-        }
-
-    }
-
-    static async deleteServiceById(req, res, next) {
-
-        try {
-            const { sid } = req.params;
-
-            const services = await serviceManager.readServices()
-
-            const serviceIndex = services.findIndex(service => service.id === parseInt(sid))
-
-            if (serviceIndex === -1) {
-                return res.status(404).json({
-                    status: "error",
-                    message: "Servicio no encontrado"
-                });
-            }
-
-            services.splice(serviceIndex, 1)
-
-            await serviceManager.writeServices(services)
-
-            res.status(200).json({
-                status: "success",
-                message: "Servicio eliminado"
-            });
-
-        } catch (error) {
-            next(error);
-        }
+        return res.status(500).json({
+            status: "error",
+            message: error.message
+        })
     }
 }
 
-export default ServiceController;
+
+export const getServiceById = async (req, res) => {
+
+    try {
+
+        // req.params.sid existe porque en el Router
+        // definimos una parte dinámica de la URL como :sid.
+        const service = await servicesService.getServiceById(
+            req.params.sid
+        )
+
+
+        return res.status(200).json({
+            status: "success",
+            payload: service
+        })
+
+    } catch (error) {
+
+        return res.status(404).json({
+            status: "error",
+            message: error.message
+        })
+    }
+}
+
+
+export const createService = async (req, res) => {
+
+    try {
+
+        // El Controller traduce HTTP → datos de aplicación.
+        //
+        // Le entrega req.body al Service,
+        // pero el Service nunca necesita conocer req.
+        const service = await servicesService.createService(req.body)
+
+
+        return res.status(201).json({
+            status: "success",
+            payload: service
+        })
+
+    } catch (error) {
+
+        return res.status(400).json({
+            status: "error",
+            message: error.message
+        })
+    }
+}
+
+
+export const updateService = async (req, res) => {
+
+    try {
+
+        // El ID llega desde la URL y los cambios desde el body.
+        //
+        // El Controller extrae ambas cosas del protocolo HTTP
+        // y se las pasa al Service como valores normales.
+        const service = await servicesService.updateService(
+            req.params.sid,
+            req.body
+        )
+
+
+        return res.status(200).json({
+            status: "success",
+            payload: service
+        })
+
+    } catch (error) {
+
+        return res.status(404).json({
+            status: "error",
+            message: error.message
+        })
+    }
+}
+
+
+export const deleteService = async (req, res) => {
+
+    try {
+
+        const service = await servicesService.deleteService(
+            req.params.sid
+        )
+
+
+        return res.status(200).json({
+            status: "success",
+            payload: service
+        })
+
+    } catch (error) {
+
+        return res.status(404).json({
+            status: "error",
+            message: error.message
+        })
+    }
+}
