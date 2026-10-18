@@ -40,12 +40,12 @@ export class ServicesService {
 
     async createService(data) {
 
-        const { name, duration, price, category } = data
+        const { name, description, duration, price, category } = data
 
 
         // Esta validación pertenece acá porque define
         // qué consideramos un servicio válido.
-        if (!name || !duration || price === undefined || !category) {
+        if (!name || !description || !duration || price === undefined || !category) {
             throw new Error("Faltan campos obligatorios")
         }
 
@@ -57,6 +57,7 @@ export class ServicesService {
 
         return this.repository.create({
             name,
+            description,
             duration,
             price,
             category

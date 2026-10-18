@@ -1,8 +1,15 @@
-import "dotenv/config"
+import { envConfig } from "./config/env.config.js"
 import app from "./app.js";
 
-const PORT = process.env.PORT || 8080;
+import { connectDB } from "./config/database.config.js";
 
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+
+const startServer = async () => {
+    await connectDB()
+    
+    app.listen(envConfig.port, () => {
+        console.log(`Servidor corriendo en http://localhost:${envConfig.port}`);
+    });
+}
+
+startServer();
