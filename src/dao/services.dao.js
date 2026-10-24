@@ -10,16 +10,16 @@ export class ServicesDAO {
     async getAll() {
 
         // readFile nos entrega texto porque estamos leyendo un archivo.
-        const services = await ServiceModel.find()
+        const services = await ServiceModel.find().lean()
 
 
-// await ServiceModel.find()
-// await ServiceModel.findById(id)
-// await ServiceModel.create(data)
-// await ServiceModel.findByIdAndUpdate(id, data, { new: true })
-// await ServiceModel.findByIdAndDelete(id) 
+        // await ServiceModel.find()
+        // await ServiceModel.findById(id)
+        // await ServiceModel.create(data)
+        // await ServiceModel.findByIdAndUpdate(id, data, { new: true })
+        // await ServiceModel.findByIdAndDelete(id) 
 
-        
+
         return services
     }
 
@@ -43,7 +43,7 @@ export class ServicesDAO {
 
     async update(id, data) {
 
-        const service = await ServiceModel.findByIdAndUpdate(id, data, {new: true})
+        const service = await ServiceModel.findByIdAndUpdate(id, data, { new: true })
 
 
         return service
@@ -52,7 +52,7 @@ export class ServicesDAO {
 
     async delete(id) {
 
-        const service = await ServiceModel.findByIdAndDelete(id) 
+        const service = await ServiceModel.findByIdAndDelete(id)
 
         return service
     }

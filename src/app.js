@@ -1,13 +1,24 @@
 import express from "express";
+import { engine } from "express-handlebars";
 import serviceRouter from "./routes/services.router.js";
 import bookingRouter from "./routes/bookings.router.js";
+import viewsRouter from "./routes/views.router.js";
+
+import __dirname from "./utils.js";
 const app = express();
 
 // Middleware para poder recibir datos en el req.body
 app.use(express.json());
 
+app.set("views", __dirname + "/views");
+app.set("view engine", "handlebars");
+app.engine("handlebars", engine());
+app.use(express.static(__dirname + "/public"));
+
 app.use("/api/services", serviceRouter);
 app.use("/api/bookings", bookingRouter);
+
+app.use("/", viewsRouter);
 
 // Ruta principal
 app.get("/", (req, res) => {

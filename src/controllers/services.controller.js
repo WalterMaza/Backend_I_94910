@@ -2,6 +2,7 @@
 // al Manager ni conoce FileSystem.
 //
 // Su única dependencia para ejecutar los casos de uso será el Service.
+import { socketServer } from "../server.js"
 import { ServicesService } from "../services/services.service.js"
 
 
@@ -119,6 +120,9 @@ export const deleteService = async (req, res) => {
         const service = await servicesService.deleteService(
             req.params.sid
         )
+            .then(data => {
+                socketServer.emit("delete-service", data)
+            })
 
 
         return res.status(200).json({

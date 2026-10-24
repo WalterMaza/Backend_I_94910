@@ -1,15 +1,17 @@
 import { envConfig } from "./config/env.config.js"
+import { Server } from "socket.io";
 import app from "./app.js";
 
 import { connectDB } from "./config/database.config.js";
 
 
-const startServer = async () => {
+const httpServer = app.listen(envConfig.port, async () => {
     await connectDB()
-    
-    app.listen(envConfig.port, () => {
-        console.log(`Servidor corriendo en http://localhost:${envConfig.port}`);
-    });
-}
+    console.log(`Servidor corriendo en http://localhost:${envConfig.port}`);
+});
 
-startServer();
+export const socketServer = new Server(httpServer);
+
+socketServer.on("connection", (socketClient) => {
+    console.log("Nuevo cliente conectado");
+});
