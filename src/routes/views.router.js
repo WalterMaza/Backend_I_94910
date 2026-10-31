@@ -11,10 +11,10 @@ router.get("/index", async (req, res, next) => {
 })
 
 router.get("/services", async (req, res, next) => {
+    const paginatedServices = await new ServicesService().getServices(req.query);
+    console.log(paginatedServices);
 
-    const services = await new ServicesService().getServices();
-
-    res.status(200).render("services", { services });
+    res.status(200).render("services", { paginatedServices });
 });
 
 export default router;

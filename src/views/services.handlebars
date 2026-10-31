@@ -4,13 +4,28 @@
 
 aca van los servicios
 
-{{#each services}}
+{{#each paginatedServices.docs}}
 {{#if this.available}}
 <p>Nombre: {{this.name}}</p>
 <p>Precio: {{this.price}}</p>
 <br>
 {{/if}}
 {{/each}}
+
+
+<p>
+    {{#if paginatedServices.hasPrevPage}}
+    <a href="/services?page={{paginatedServices.prevPage}}"> Anterior: {{paginatedServices.prevPage}}</a>
+    {{/if}}
+
+    -- Page: {{paginatedServices.page}} --
+
+    {{#if paginatedServices.hasNextPage}}
+    <a href="/services?page={{paginatedServices.nextPage}}">
+        Siguiente: {{paginatedServices.nextPage}}</a>
+    {{/if}}
+</p>
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/services.js"></script>

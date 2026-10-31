@@ -15,7 +15,9 @@
     "express": "^5.2.1",
     "express-handlebars": "^9.0.2",
     "mongoose": "^9.11.2",
+    "mongoose-paginate-v2": "^1.9.5",
     "nodemon": "^3.1.14",
-    "socket.io": "^4.8.4"
+    "socket.io": "^4.8.4",
+    "zod": "^4.6.7"
   }
 }

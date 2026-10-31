@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import paginate from "mongoose-paginate-v2"
 
 const serviceSchema = new mongoose.Schema({
     name: {
@@ -19,12 +20,16 @@ const serviceSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     available: {
         type: Boolean,
-        default: true
+        default: true,
+        index: true
     }
 })
- 
+
+serviceSchema.plugin(paginate);
+
 export const ServiceModel = mongoose.model("services", serviceSchema)

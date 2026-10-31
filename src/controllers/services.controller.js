@@ -7,15 +7,18 @@ import { ServicesService } from "../services/services.service.js"
 
 
 const servicesService = new ServicesService()
-
+/**
+ * 
+ * @param {import("express").Request} req 
+ * @param {*} res 
+ * @returns 
+ */
 export const getServices = async (req, res) => {
 
     try {
+        const services = await servicesService.getServices(req.query)
 
-        // El Controller pide el caso de uso al Service.
-        // No necesita saber de dónde salen los datos.
-        const services = await servicesService.getServices()
-
+        console.log(services);
 
         return res.status(200).json({
             status: "success",

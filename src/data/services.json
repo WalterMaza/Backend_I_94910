@@ -1,26 +1,802 @@
 [
   {
-    "id": "f1f94249-6e28-420f-958f-9f3de6a20dad",
-    "name": "Clases de Programación",
+    "name": "Corte de cabello clásico mujer",
+    "description": "Corte personalizado según el tipo de rostro, incluye lavado previo con shampoo neutro y secado básico.",
+    "duration": 45,
+    "price": 9500,
+    "category": "Peluquería",
+    "available": true
+  },
+  {
+    "name": "Corte de cabello clásico hombre",
+    "description": "Corte tradicional a tijera o máquina con terminación prolija en patillas y nuca.",
+    "duration": 30,
+    "price": 7000,
+    "category": "Peluquería",
+    "available": true
+  },
+  {
+    "name": "Corte en capas y peinado",
+    "description": "Técnica de corte en capas para aportar movimiento y volumen, finalizado con peinado a secador.",
+    "duration": 60,
+    "price": 11500,
+    "category": "Peluquería",
+    "available": true
+  },
+  {
+    "name": "Corte infantil",
+    "description": "Corte dinámico y entretenido para niños de hasta 12 años con acabado suave.",
+    "duration": 30,
+    "price": 6000,
+    "category": "Peluquería",
+    "available": true
+  },
+  {
+    "name": "Lavado y peinado express",
+    "description": "Lavado profundo con masaje capilar y secado rápido para lucir un cabello impecable en minutos.",
+    "duration": 30,
+    "price": 5500,
+    "category": "Peluquería",
+    "available": true
+  },
+  {
+    "name": "Peinado para eventos y fiestas",
+    "description": "Peinado elaborado, recogido o semi-recogido, ideal para bodas, graduaciones y celebraciones especiales.",
+    "duration": 75,
+    "price": 18000,
+    "category": "Peluquería",
+    "available": true
+  },
+  {
+    "name": "Brushing progresivo",
+    "description": "Modelado intensivo con cepillo y calor que reduce el frizz y aporta sedosidad prolongada.",
+    "duration": 60,
+    "price": 8500,
+    "category": "Peluquería",
+    "available": true
+  },
+  {
+    "name": "Alisado con keratina",
+    "description": "Tratamiento termoactivo que reestructura la fibra capilar, reduce el volumen y deja el cabello lacio y brillante.",
     "duration": 120,
-    "price": 12345,
-    "category": "IT",
+    "price": 26000,
+    "category": "Peluquería",
     "available": true
   },
   {
-    "id": "4f4bb12b-09a5-45dc-b244-260dfcde9ed2",
-    "name": "masterclass bajo electrico",
-    "duration": 150,
-    "price": 500,
-    "category": "musica",
+    "name": "Bótox capilar restaurador",
+    "description": "Fórmula reconstructora con vitaminas y aminoácidos que repara puntas abiertas y rehidrata en profundidad.",
+    "duration": 90,
+    "price": 21000,
+    "category": "Peluquería",
     "available": true
   },
   {
-    "id": "721be803-d548-406e-aa34-d28d4c2ad59c",
-    "name": "pasteleria basica",
+    "name": "Balayage con iluminación natural",
+    "description": "Técnica francesa de aclarado a mano alzada para lograr un degradado sutil, luminoso y natural.",
+    "duration": 180,
+    "price": 36000,
+    "category": "Peluquería",
+    "available": true
+  },
+  {
+    "name": "Corte fade / degradé",
+    "description": "Corte moderno con degradado progresivo desde la piel (skin fade, mid o high) con navaja y tijera superior.",
+    "duration": 45,
+    "price": 8500,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Perfilado y recorte de barba",
+    "description": "Alineación de contornos en mejillas y cuello con navaja tradicional, rebaje y aplicación de bálsamo hidratante.",
+    "duration": 30,
+    "price": 6500,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Afeitado tradicional con toalla caliente",
+    "description": "Experiencia clásica de afeitado completo al ras con toallas calientes aromatizadas y espuma cremosa a brocha.",
+    "duration": 40,
+    "price": 8000,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Combo corte y barba premium",
+    "description": "Servicio integral que incluye corte personalizado de cabello, arreglo minucioso de barba y toalla caliente.",
+    "duration": 60,
+    "price": 13500,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Ritual de barba con aceites esenciales",
+    "description": "Limpieza profunda con shampoo de barba, vapor ozono, masaje facial y nutrición con aceites orgánicos.",
+    "duration": 45,
+    "price": 9500,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Camuflaje de canas para barba",
+    "description": "Coloración semipermanente suave diseñada para atenuar canas en la barba conservando un aspecto natural.",
+    "duration": 30,
+    "price": 7500,
+    "category": "Barbería",
+    "available": false
+  },
+  {
+    "name": "Exfoliación y masaje capilar masculino",
+    "description": "Peeling capilar para oxigenar los folículos y remover impurezas, completado con masaje estimulante.",
+    "duration": 30,
+    "price": 6500,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Diseño de cejas masculinas",
+    "description": "Limpieza y despeje natural de cejas con navaja y pinza sin perder la forma varonil.",
+    "duration": 15,
+    "price": 3500,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Mascarilla negra purificante",
+    "description": "Aplicación de mascarilla peel-off con carbón activado en zona T para eliminar puntos negros e impurezas.",
+    "duration": 25,
+    "price": 4500,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Corte militar / Buzz cut",
+    "description": "Corte uniforme a máquina con una o dos medidas y terminación limpia en contornos.",
+    "duration": 25,
+    "price": 5500,
+    "category": "Barbería",
+    "available": true
+  },
+  {
+    "name": "Limpieza facial profunda con extracciones",
+    "description": "Higiene facial completa con punta de diamante, vapor de ozono, extracción manual de comedones y máscara descongestiva.",
+    "duration": 75,
+    "price": 15500,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Higiene facial express",
+    "description": "Limpieza rápida con emulsión suave, exfoliación suave, mascarilla hidratante y protector solar.",
+    "duration": 35,
+    "price": 9000,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Microdermoabrasión con punta de diamante",
+    "description": "Exfoliación mecánica que remueve capas de células muertas, atenúa manchas superficiales y estimula colágeno.",
+    "duration": 50,
+    "price": 13000,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Dermaplaning con hidratación profunda",
+    "description": "Exfoliación física con bisturí dermatológico para retirar células muertas y vello facial fino, mejorando la absorción de sueros.",
+    "duration": 60,
+    "price": 16000,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Peeling químico renovador",
+    "description": "Aplicación de ácidos (glicólico, mandélico o salicílico) para renovar la epidermis, unificar el tono y cerrar poros.",
+    "duration": 45,
+    "price": 14500,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Tratamiento anti-age con ácido hialurónico",
+    "description": "Protocolo reafirmante con electroporación de activos puros y suero concentrado de ácido hialurónico.",
+    "duration": 60,
+    "price": 18500,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Radiofrecuencia facial tensora",
+    "description": "Emisión de ondas térmicas que contraen las fibras de colágeno existentes y promueven nuevo colágeno, efecto lifting sin cirugía.",
+    "duration": 50,
+    "price": 16500,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Tratamiento descongestivo para piel sensible",
+    "description": "Protocolo calmante con principios activos botánicos (manzanilla, tilo y caléndula) y crioterapia.",
+    "duration": 50,
+    "price": 14000,
+    "category": "Cuidado Facial",
+    "available": false
+  },
+  {
+    "name": "Terapia con máscara LED rejuvenecedora",
+    "description": "Fototerapia lumínica que combate bacterias del acné, calma rojeces y reactiva la elastina dérmica.",
+    "duration": 40,
+    "price": 11000,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Masaje facial Kobido japonés",
+    "description": "Ancestral masaje lifting facial de movimientos rápidos y precisos que tonifica la musculatura y desinflama.",
+    "duration": 45,
+    "price": 12500,
+    "category": "Cuidado Facial",
+    "available": true
+  },
+  {
+    "name": "Masaje descontracturante localizado",
+    "description": "Masaje profundo enfocado en cuello, hombros y espalda para disolver nudos y contracturas crónicas.",
+    "duration": 50,
+    "price": 12000,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Masaje relajante corporal completo",
+    "description": "Maniobras suaves y fluidas con aceites aromáticos para aliviar el estrés, relajar tensiones y favorecer el descanso.",
+    "duration": 60,
+    "price": 13500,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Masaje con piedras calientes de basalto",
+    "description": "Terapia geotermal que combina calor sostenido y deslizamiento de piedras volcánicas para una relajación profunda.",
+    "duration": 70,
+    "price": 17000,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Masaje deportivo pre y post esfuerzo",
+    "description": "Técnicas intensas de percusión, fricción y elongaciones pasivas orientadas a optimizar el rendimiento muscular.",
+    "duration": 60,
+    "price": 14500,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Reflexología podal integral",
+    "description": "Presión rítmica en puntos reflejos de la planta del pie que estimulan órganos internos y equilibran la energía vital.",
+    "duration": 45,
+    "price": 10500,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Drenaje linfático manual corporal",
+    "description": "Movimientos suaves y bombeos rítmicos que favorecen la reabsorción de líquidos y toxinas del organismo.",
+    "duration": 60,
+    "price": 14000,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Masaje tailandés en tatami",
+    "description": "Sesión de yoga asistido y presiones corporales profundas sobre tatami tradicional para estirar articulaciones.",
+    "duration": 80,
+    "price": 19500,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Masaje a cuatro manos relajación total",
+    "description": "Experiencia sensorial suprema con dos terapeutas sincronizados en ritmo y presión constante.",
+    "duration": 60,
+    "price": 26000,
+    "category": "Masajes y Spa",
+    "available": false
+  },
+  {
+    "name": "Terapia de ventosas chinas (cupping)",
+    "description": "Aplicación de copas de succión para incrementar el flujo sanguíneo, relajar fascias y aliviar dolores lumbares.",
+    "duration": 45,
+    "price": 11500,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Masaje craneofacial y cervical",
+    "description": "Técnica relajante orientada a aliviar dolores de cabeza tensionales, migrañas y rigidez cervical.",
+    "duration": 35,
+    "price": 9000,
+    "category": "Masajes y Spa",
+    "available": true
+  },
+  {
+    "name": "Manicuría clásica",
+    "description": "Limado, repujado de cutículas, exfoliación suave de manos y esmaltado convencional de secado al aire.",
+    "duration": 40,
+    "price": 6500,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Esmaltado semipermanente en manos",
+    "description": "Preparación de la uña, esmaltado en gel secado en cabina UV/LED con duración impecable de 15 a 21 días.",
+    "duration": 60,
+    "price": 10000,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Manicuría rusa combinada",
+    "description": "Limpieza milimétrica de cutículas con torno y fresas diamantadas para un acabado prolijo y mayor duración.",
+    "duration": 70,
+    "price": 12500,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Kapping gel fortalecedor",
+    "description": "Capa fina de acrigel o gel constructor sobre la uña natural para evitar quiebres y permitir que crezca fuerte.",
+    "duration": 75,
+    "price": 13500,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Esculpidas en acrílico con diseño",
+    "description": "Extensión de uñas esculpidas con molde y polímero acrílico, acabado almond o square con nail art básico.",
+    "duration": 120,
+    "price": 21000,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Uñas Soft Gel completas",
+    "description": "Tips de gel adhesivo flexible que aportan longitud instantánea y aspecto ultranatural sin dañar la uña base.",
+    "duration": 90,
+    "price": 17500,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Retiro seguro de semipermanente o esculpidas",
+    "description": "Remoción suave con torno y líquidos emolientes protegiendo la lámina natural de la uña.",
+    "duration": 30,
+    "price": 4000,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Belleza de pies clásica",
+    "description": "Corte y limado de uñas, remoción de asperezas leves, pulido de talones y esmaltado tradicional.",
+    "duration": 45,
+    "price": 8000,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Pedicuría profunda con torno",
+    "description": "Tratamiento podológico estético para durezas rebeldes, talones agrietados y embellecimiento de cutículas.",
+    "duration": 60,
+    "price": 11500,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Spa de pies con hidromasaje y aromaterapia",
+    "description": "Inmersión relajante en agua tibia con sales aromáticas, exfoliación marina y masaje relajante podal.",
+    "duration": 50,
+    "price": 10500,
+    "category": "Manicuría y Pedicuría",
+    "available": true
+  },
+  {
+    "name": "Perfilado y diseño de cejas",
+    "description": "Mapeo visagista según proporciones faciales, depilación con pinza y recorte milimétrico.",
+    "duration": 30,
+    "price": 5500,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Perfilado con hilo hindú",
+    "description": "Técnica milenaria de depilación con hilo 100% algodón que arranca el vello de raíz sin irritar la piel.",
+    "duration": 30,
+    "price": 6500,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Laminado de cejas con keratina",
+    "description": "Tratamiento semipermanente que peina y fija los vellos rebeldes hacia arriba, aportando grosor y definición.",
+    "duration": 50,
+    "price": 11000,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Tinte de cejas con henna orgánica",
+    "description": "Coloración natural que tiñe pelo y sombra de piel para dar un efecto de cejas sombreadas y pobladas.",
+    "duration": 40,
+    "price": 7500,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Lifting de pestañas con nutrición",
+    "description": "Curvado natural de pestañas desde la raíz junto con aplicación de keratina regeneradora para una mirada abierta.",
+    "duration": 60,
+    "price": 12500,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Tinte de pestañas negro intenso",
+    "description": "Coloración semipermanente de pestañas para intensificar el color y dar apariencia de máscara de pestañas 24/7.",
+    "duration": 30,
+    "price": 5000,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Extensiones de pestañas pelo a pelo clásicas",
+    "description": "Aplicación de una extensión sintética de seda por cada pestaña natural para un resultado sutil y sofisticado.",
+    "duration": 110,
+    "price": 19000,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Extensiones de pestañas volumen ruso 3D/4D",
+    "description": "Abanicos livianos hechos a mano colocados sobre cada pestaña natural para un volumen tupido y glamoroso.",
+    "duration": 130,
+    "price": 24000,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Mantenimiento de extensiones de pestañas",
+    "description": "Relleno y reposición de extensiones caídas a los 15-20 días de la aplicación inicial.",
+    "duration": 60,
+    "price": 12000,
+    "category": "Cejas y Pestañas",
+    "available": true
+  },
+  {
+    "name": "Microblading efecto pelo a pelo",
+    "description": "Micropigmentación manual superficial para recrear cejas hiperrealistas con pigmentos biocompatibles.",
     "duration": 150,
-    "price": 500,
-    "category": "cocina",
+    "price": 45000,
+    "category": "Cejas y Pestañas",
+    "available": false
+  },
+  {
+    "name": "Depilación definitiva láser axilas",
+    "description": "Tecnología láser de diodo / soprano indolora y efectiva para eliminación permanente del vello axilar.",
+    "duration": 20,
+    "price": 7000,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Depilación definitiva láser cavado completo",
+    "description": "Sesión rápida con cabezal frío para depilación integral de zona íntima femenina o masculina.",
+    "duration": 30,
+    "price": 9500,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Depilación definitiva láser piernas completas",
+    "description": "Sesión de láser para muslos, rodillas y pantorrillas con barrido continuo y máxima comodidad.",
+    "duration": 45,
+    "price": 16000,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Depilación definitiva láser rostro completo",
+    "description": "Tratamiento en bozo, mentón, patillas y entrecejo para una piel facial suave y sin sombras.",
+    "duration": 25,
+    "price": 8000,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Depilación con cera descartable piernas completas",
+    "description": "Cera tibia hipoalergénica con bandas descartables para una depilación higiénica y rápida.",
+    "duration": 40,
+    "price": 7500,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Depilación con cera sistema español cavado profundo",
+    "description": "Cera vegetal tibia de baja fusión, ideal para zonas sensibles, sin bandas y con mínimo dolor.",
+    "duration": 35,
+    "price": 6500,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Depilación con cera bozo y mentón",
+    "description": "Extracción del vello facial fino con cera calmante con manzanilla y gel post-depilatorio.",
+    "duration": 15,
+    "price": 3000,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Depilación masculina espalda y pecho con cera",
+    "description": "Remoción eficaz del vello corporal en torso y espalda con posterior loción refrescante descongestiva.",
+    "duration": 45,
+    "price": 11000,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Depilación de brazos completos con cera",
+    "description": "Depilación con cera tibia descartable desde hombros hasta muñecas con acabado sedoso.",
+    "duration": 30,
+    "price": 6000,
+    "category": "Depilación",
+    "available": false
+  },
+  {
+    "name": "Pack corporal láser cuerpo completo",
+    "description": "Sesión completa que abarca piernas enteras, cavado total, axilas y línea de alba.",
+    "duration": 75,
+    "price": 28000,
+    "category": "Depilación",
+    "available": true
+  },
+  {
+    "name": "Ultracavitación reductora localizada",
+    "description": "Ondas ultrasónicas de baja frecuencia que destruyen adipocitos en abdomen, flancos o cartucheras.",
+    "duration": 45,
+    "price": 14000,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Sesión de maderoterapia modeladora",
+    "description": "Técnica manual con elementos de madera noble diseñada para esculpir la figura y combatir la celulitis.",
+    "duration": 50,
+    "price": 13500,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Presoterapia secuencial con botas neumáticas",
+    "description": "Drenaje mecánico que activa la circulación de retorno, combate edemas y deshincha las piernas.",
+    "duration": 40,
+    "price": 8500,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Electroestimulación con ondas rusas",
+    "description": "Contracciones musculares isométricas para tonificar glúteos, piernas y abdomen de forma pasiva.",
+    "duration": 40,
+    "price": 9000,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Exfoliación corporal con sales marinas e hidratación",
+    "description": "Pulido corporal para eliminar células secas, seguido de una crema emoliente perfumada con masaje suave.",
+    "duration": 50,
+    "price": 12500,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Envoltura desintoxicante con fango termal",
+    "description": "Aplicación de lodo volcánico mineralizante en zonas críticas con efecto oclusivo reductor y desintoxicante.",
+    "duration": 60,
+    "price": 15500,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Radiofrecuencia corporal reafirmante",
+    "description": "Tratamiento térmico para tensar piel flácida en brazos, abdomen o cara interna de muslos.",
+    "duration": 50,
+    "price": 14500,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Tratamiento shock anti-celulitis con vacumterapia",
+    "description": "Succión suave combinada con rodillos mecánicos para despegar nódulos celulíticos y alisar la piel de naranja.",
+    "duration": 50,
+    "price": 16000,
+    "category": "Estética Corporal",
+    "available": false
+  },
+  {
+    "name": "Criolipólisis plana zona abdomen",
+    "description": "Aplicación de placas frías controladas para cristalizar y eliminar tejido graso sin dolor ni succión violenta.",
+    "duration": 60,
+    "price": 23000,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Masaje modelador reductor con gel térmico",
+    "description": "Maniobras vigorosas y enérgicas para estimular la lipólisis y marcar la cintura.",
+    "duration": 45,
+    "price": 12000,
+    "category": "Estética Corporal",
+    "available": true
+  },
+  {
+    "name": "Maquillaje social de día",
+    "description": "Look natural, luminoso y fresco, ideal para bautismos, comuniones, almuerzos de trabajo o eventos diurnos.",
+    "duration": 50,
+    "price": 13000,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Maquillaje social de noche / fiesta",
+    "description": "Look impactante con delineado definido, smokey eyes o glitter, piel perfeccionada y pestañas postizas individuales.",
+    "duration": 70,
+    "price": 18500,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Maquillaje para novias con prueba previa",
+    "description": "Servicio exclusivo para la novia que incluye sesión de prueba previa, asesoramiento estilístico y maquillaje el día de la boda.",
+    "duration": 120,
+    "price": 42000,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Maquillaje para quinceañeras",
+    "description": "Diseño juvenil adaptado a la personalidad de la homenajeada, con fijación de larga duración resistente a emociones.",
+    "duration": 80,
+    "price": 25000,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Clase personalizada de automaquillaje",
+    "description": "Taller individual de 2 horas donde aprenderás técnicas para tu morfología facial, uso de tus cosméticos y tips de rutina diaria.",
+    "duration": 120,
+    "price": 22000,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Maquillaje express para fotos de perfil / CV",
+    "description": "Corrección rápida de ojeras e imperfecciones, matificación y realce natural optimizado para cámaras.",
+    "duration": 35,
+    "price": 9500,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Maquillaje artístico / editorial",
+    "description": "Creación conceptual con productos de alta pigmentación, texturas especiales y fijadores profesionales para pasarela o producciones.",
+    "duration": 90,
+    "price": 29000,
+    "category": "Maquillaje",
+    "available": false
+  },
+  {
+    "name": "Combo maquillaje y peinado para madrinas",
+    "description": "Servicio integral de peinado recogido o semi-recogido combinado con maquillaje sofisticado a prueba de agua.",
+    "duration": 110,
+    "price": 32000,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Colocación de pestañas postizas en tira o racimos",
+    "description": "Aplicación rápida con pegamento quirúrgico hipoalergénico de alta adherencia y duración para tu evento.",
+    "duration": 20,
+    "price": 4500,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Maquillaje correctivo camuflaje de cicatrices",
+    "description": "Técnica con correctores de alta cobertura y neutralizadores de color para emparejar imperfecciones marcadas o tatuajes.",
+    "duration": 45,
+    "price": 14000,
+    "category": "Maquillaje",
+    "available": true
+  },
+  {
+    "name": "Tratamiento de nutrición intensiva con óleo de argán",
+    "description": "Baño de crema reparador con calor térmico que devuelve la elasticidad a cabellos secos o castigados por el sol.",
+    "duration": 45,
+    "price": 8500,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Cauterización molecular capilar",
+    "description": "Sellado de cutículas con plancha a baja temperatura y concentrado de queratina hidrolizada para cabellos porosos.",
+    "duration": 60,
+    "price": 15000,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Protocolo reconstructor Olaplex paso 1 y 2",
+    "description": "Tratamiento patentado que repara los enlaces de disulfuro rotos por decoloraciones y calor extremo.",
+    "duration": 60,
+    "price": 19500,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Detox capilar y exfoliación de cuero cabelludo",
+    "description": "Tratamiento purificante con arcilla blanca y menta que elimina exceso de sebo, polución y caspa.",
+    "duration": 45,
+    "price": 9500,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Tratamiento anti-caída con mesoterapia capilar tópica",
+    "description": "Aplicación de loción de biotina, cafeína y péptidos estimulantes con masaje dermo-activador.",
+    "duration": 45,
+    "price": 13500,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Hidro-nutrición con ampolla de células madre",
+    "description": "Infusión concentrada que regenera la fibra capilar desde la raíz aportando sedosidad y brillo espejo.",
+    "duration": 50,
+    "price": 11000,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Diagnóstico cutáneo y diseño de rutina facial",
+    "description": "Evaluación con lámpara de Wood para determinar biotipo cutáneo y armado de rutina de skincare personalizada.",
+    "duration": 40,
+    "price": 8000,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Drenaje linfático post-operatorio",
+    "description": "Tratamiento médico-estético suave para acelerar la recuperación y reabsorción de edemas post cirugía plástica.",
+    "duration": 60,
+    "price": 16500,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Sesión de quiropraxia y reeducación postural",
+    "description": "Ajuste manual articular y vertebral para descomprimir raíces nerviosas y corregir vicios posturales.",
+    "duration": 45,
+    "price": 16000,
+    "category": "Cuidado Capilar y Bienestar",
+    "available": true
+  },
+  {
+    "name": "Sesión de reiki y armonización sonora",
+    "description": "Terapia holística con aceites puros grado terapéutico y cuencos tibetanos para desintoxicar la mente.",
+    "duration": 50,
+    "price": 10000,
+    "category": "Cuidado Capilar y Bienestar",
     "available": true
   }
 ]

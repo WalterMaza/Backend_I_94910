@@ -1,60 +1,43 @@
-// El Service trabaja con operaciones de datos,
-// pero no necesita conocer cómo se ejecutan técnicamente.
-//
-// Por eso depende del Repository.
 import { ServicesRepository } from "../repositories/services.repository.js"
 
-
-// Acá concentramos las reglas relacionadas con el recurso Service.
 export class ServicesService {
-
 
     constructor(repository = new ServicesRepository()) {
         this.repository = repository
     }
 
+    getServices(query) {
+        // se toma la query y se crea el objeto de filtrado
+        const filter = {
+            // category: query.category ? query.category : "",
+            // available: query.available ? query.available : ""
+        }
 
-    // No agregamos ninguna regla especial para listar,
-    // así que delegamos directamente la consulta.
-    getServices() {
-        return this.repository.getAll()
+        const pagination = {
+            limit: query.limit,
+            page: query.page
+        }
+
+        // revisar la validacion del filtrado
+        return this.repository.getAll(filter, pagination)
     }
 
-
     async getServiceById(id) {
-
         const service = await this.repository.getById(id)
-
-
-        // El Repository devuelve datos.
-        // El Service interpreta esos datos según el comportamiento
-        // esperado por nuestra aplicación.
         if (!service) {
             throw new Error("Servicio no encontrado")
         }
-
-
         return service
     }
 
-
     async createService(data) {
-
         const { name, description, duration, price, category } = data
-
-
-        // Esta validación pertenece acá porque define
-        // qué consideramos un servicio válido.
         if (!name || !description || !duration || price === undefined || !category) {
             throw new Error("Faltan campos obligatorios")
         }
-
-
         if (price < 0) {
             throw new Error("El precio no puede ser negativo")
         }
-
-
         return this.repository.create({
             name,
             description,
@@ -64,33 +47,20 @@ export class ServicesService {
         })
     }
 
-
     async updateService(id, data) {
-
-        // La capa de negocio solicita la modificación.
-        // No sabe si debajo se modifica un JSON o un documento MongoDB.
         const service = await this.repository.update(id, data)
-
-
         if (!service) {
             throw new Error("Servicio no encontrado")
         }
-
-
         return service
     }
 
 
     async deleteService(id) {
-
         const service = await this.repository.delete(id)
-
-
         if (!service) {
             throw new Error("Servicio no encontrado")
         }
-
-
         return service
     }
 }
