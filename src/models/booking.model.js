@@ -9,17 +9,26 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    date: {
-        type: Date
-    },
-    time: {
-        type: String,
-    },
-    status: {
-        type: String,
-        enum: ["pending", "confirmed", "cancelled"],
-        default: "pending"
+    services: {
+        type: [{
+            service: {
+                type: mongoose.Types.ObjectId,
+                ref: "services"
+            }
+        }],
+        default: []
     }
+    // date: {
+    //     type: Date
+    // },
+    // time: {
+    //     type: String,
+    // },
+    // status: {
+    //     type: String,
+    //     enum: ["pending", "confirmed", "cancelled"],
+    //     default: "pending"
+    // }
 })
 
 export const BookingModel = mongoose.model("booking", bookingSchema)

@@ -7,12 +7,7 @@ import { ServicesService } from "../services/services.service.js"
 
 
 const servicesService = new ServicesService()
-/**
- * 
- * @param {import("express").Request} req 
- * @param {*} res 
- * @returns 
- */
+
 export const getServices = async (req, res) => {
 
     try {
