@@ -1,5 +1,9 @@
 import { Router } from "express"
 
+import { validateBody } from "../middlewares/validate.js"
+
+import { createServiceSchema, updateServiceSchema } from "../validations/service.validations.js"
+
 import {
     getServices,
     getServiceById,
@@ -18,9 +22,9 @@ router.get("/", getServices)
 
 router.get("/:sid", getServiceById)
 
-router.post("/", createService)
+router.post("/", validateBody(createServiceSchema) ,createService)
 
-router.put("/:sid", updateService)
+router.put("/:sid", validateBody(updateServiceSchema), updateService)
 
 router.delete("/:sid", deleteService)
 

@@ -30,21 +30,29 @@ export class ServicesService {
         return service
     }
 
+    //Anterior createService
+    // async createService(data) {
+    //     const { name, description, duration, price, category } = data
+    //     if (!name || !description || !duration || price === undefined || !category) {
+    //         throw new Error("Faltan campos obligatorios")
+    //     }
+    //     if (price < 0) {
+    //         throw new Error("El precio no puede ser negativo")
+    //     }
+    //     return this.repository.create({
+    //         name,
+    //         description,
+    //         duration,
+    //         price,
+    //         category
+    //     })
+    // }
+
+    //Nuevo createService luego de agregar validaciones con Zod
     async createService(data) {
-        const { name, description, duration, price, category } = data
-        if (!name || !description || !duration || price === undefined || !category) {
-            throw new Error("Faltan campos obligatorios")
-        }
-        if (price < 0) {
-            throw new Error("El precio no puede ser negativo")
-        }
-        return this.repository.create({
-            name,
-            description,
-            duration,
-            price,
-            category
-        })
+
+    return this.repository.create(data)
+    
     }
 
     async updateService(id, data) {

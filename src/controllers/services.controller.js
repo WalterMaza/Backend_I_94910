@@ -18,7 +18,7 @@ export const getServices = async (req, res) => {
     try {
         const services = await servicesService.getServices(req.query)
 
-        console.log(services);
+        // console.log(services);
 
         return res.status(200).json({
             status: "success",
